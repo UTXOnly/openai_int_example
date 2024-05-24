@@ -1,7 +1,8 @@
 
 # OpenAI and Datadog Integration
 
-This project integrates OpenAI's GPT-3.5-turbo model with Datadog for monitoring. The application runs in Docker containers managed by Docker Compose.
+This example creates a Python application using OpenAI's GPT-4 model alongside Datadog for monitoring. It collects metrics, traces, and logs. The application runs in Docker containers managed by Docker Compose. For account usage metrics, use [Datadog's OpenAI integration](https://app.datadoghq.com/integrations/openai?search=openai).
+
 
 ## Prerequisites
 
