@@ -6,8 +6,8 @@ services:
     environment:
       - DD_API_KEY=${DATADOG_API_KEY}
       - DD_APM_ENABLED=true
-      - DD_APM_NON_LOCAL_TRAFFIC=true
       - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+
     ports:
       - "8126:8126"
       - "8125:8125/udp"
@@ -22,8 +22,14 @@ services:
       dockerfile: Dockerfile
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DD_API_KEY=${DATADOG_API_KEY}
       - DD_AGENT_HOST=datadog-agent
       - DD_SERVICE=my-service
       - DD_ENV=staging
+      - DD_OPENAI_LOGS_ENABLED=true
     depends_on:
       - datadog-agent
+    volumes:
+      - ./logs:/app/logs
+    env_file:
+      - .env
