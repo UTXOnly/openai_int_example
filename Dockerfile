@@ -10,10 +10,10 @@ ENV DD_AGENT_HOST="datadog-agent"
 RUN pip install openai datadog ddtrace
 
 # Copy the script into the container
-COPY script.py /app/script.py
+COPY client.py /app/client.py
 
 # Set the working directory
 WORKDIR /app
 
 # Run the script with ddtrace-run
-CMD ["ddtrace-run", "python", "script.py"]
+CMD ["ddtrace-run", "python", "client.py"]
