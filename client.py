@@ -16,9 +16,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
 api_key = os.getenv("OPENAI_API_KEY")
-
 client = OpenAI(api_key=api_key)
 
 # Set tracer to Datadog agent host
@@ -28,7 +26,6 @@ tracer.configure(hostname=os.getenv("DD_AGENT_HOST", "localhost"), port=8126)
 statsd_host = os.getenv("DD_AGENT_HOST")
 statsd_port = 8125
 statsd = DogStatsd(host=statsd_host, port=statsd_port)
-
 
 def get_openai_response(prompt):
     try:
@@ -44,7 +41,6 @@ def get_openai_response(prompt):
         )
         return None
 
-
 def process_response(response):
     try:
         processed_text = response.choices[0].message.content.strip()
@@ -53,7 +49,6 @@ def process_response(response):
     except Exception as e:
         logger.error(f"Error processing response: {e}")
         return None
-
 
 def main():
     while True:
@@ -68,7 +63,6 @@ def main():
         else:
             logger.error("Failed to get a valid response from OpenAI API.")
         time.sleep(10)
-
 
 if __name__ == "__main__":
     main()
