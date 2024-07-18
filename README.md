@@ -45,14 +45,14 @@ The application sends a prompt to OpenAI's GPT-4 model and logs the response. It
 
 Application logs are stored in the `logs/` directory. You can view them using the following command:
 ```sh
-cat logs/app.log
+tail -f logs/app.log
 ```
 
 ### Checking Environment Variables in Containers
 
 To ensure environment variables are set correctly, you can check them inside the running container:
 ```sh
-docker exec -it <container_name> /bin/sh
+docker exec -it <container_name> bash
 echo $DATADOG_API_KEY
 echo $OPENAI_API_KEY
 ```
@@ -64,7 +64,4 @@ Replace `<container_name>` with the name of your container.
 - **API Key Errors**: Ensure that the API keys in the `.env` file are correct and have the necessary permissions.
 - **Connection Issues**: Verify that the Datadog agent and the application can communicate by checking the logs and network settings.
 
-## Contributing
-
-Feel free to submit issues or pull requests. For major changes, please open an issue first to discuss what you would like to change.
 
